@@ -1,4 +1,3 @@
-
 function ordenarMenorAMayor(array){
     const menorAMayor = [].concat(array)
     menorAMayor.sort((par1,par2)=> par1.precio - par2.precio)
