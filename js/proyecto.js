@@ -1,3 +1,4 @@
+//funciones para el ordenamiento del selector 
 function ordenarMenorAMayor(array){
     const menorAMayor = [].concat(array)
     menorAMayor.sort((par1,par2)=> par1.precio - par2.precio)
@@ -26,10 +27,6 @@ function ordenarPorNombre(array){
 
 let productosDiv = document.getElementById("productos")
 function mostrarCatalogo(catalogoDeProductos){
-    // console.log(`Nuestro catalogo es:`)
-    // for(let producto of catalogoDeProductos){
-    //     console.log(`El producto ${producto.nombre} vale ${producto.precio} y pertenece a la categoria de ${producto.categoria}`)
-    // }
 
     // Mostrar productos en HTML
     
@@ -56,7 +53,9 @@ function mostrarCatalogo(catalogoDeProductos){
         let agregarBtn = document.getElementById(`agregarBtn${producto.id}`)
 
         agregarBtn.addEventListener("click", ()=>{
-            console.log(`El producto ${producto.nombre} ha sido agregado al carrito`)
+            
+            console.log(`el producto ${producto.nombre} ha sido agregado al carrito`)
+            agregarProducto(producto)
         })
     }
 }
@@ -65,6 +64,7 @@ mostrarCatalogo(catalogo)
 
 let coincidencia = document.getElementById("coincidencia")
 
+//Buscador por nombre de producto del HEADER de la página
 function buscarNombre(buscado, array){
     let busquedaArray = array.filter(
         (producto) => producto.nombre.toLowerCase().includes(buscado)
@@ -82,15 +82,15 @@ function buscarNombre(buscado, array){
 let buscador = document.getElementById("buscador")
 
 buscador.addEventListener("input", () => {
-    // console.log(buscador.value)
     buscarNombre(buscador.value, catalogo)
 })
 
+
+//Selector del HEADER para el ordenamiento de la pagina.
 let selectOrden = document.getElementById("selectOrden")
 
 selectOrden.addEventListener("change", () => {
-    console.log(selectOrden.value)
-
+    
     if (selectOrden.value == 1){
         ordenarMayorAMenor(catalogo)
     }
@@ -106,9 +106,9 @@ selectOrden.addEventListener("change", () => {
 })
 
 
-let botonVaciarCarrito = document.getElementById("botonVaciarCarrito")
-botonVaciarCarrito.addEventListener("click", () =>{
-    
-    console.log("carrito vacio")
-})
+// let botonVaciarCarrito = document.getElementById("botonVaciarCarrito")
+// botonVaciarCarrito.addEventListener("click", () =>{
+//     vaciarCarrito(carrito)  
+//     console.log("carrito vacio")
+// })
 
