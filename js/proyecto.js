@@ -54,7 +54,6 @@ function mostrarCatalogo(catalogoDeProductos){
 
         agregarBtn.addEventListener("click", ()=>{
             
-            console.log(`el producto ${producto.nombre} ha sido agregado al carrito`)
             agregarProducto(producto)
         })
     }
@@ -106,9 +105,8 @@ selectOrden.addEventListener("change", () => {
 })
 
 
-// let botonVaciarCarrito = document.getElementById("botonVaciarCarrito")
-// botonVaciarCarrito.addEventListener("click", () =>{
-//     vaciarCarrito(carrito)  
-//     console.log("carrito vacio")
-// })
+let botonVaciarCarrito = document.getElementById("botonVaciarCarrito")
+botonVaciarCarrito.addEventListener("click", () =>{
+    vaciarCarrito(carrito)  
+})
 
