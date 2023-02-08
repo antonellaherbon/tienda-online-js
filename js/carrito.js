@@ -17,7 +17,7 @@ function mostrarCarrito(arrayDeProductos){
     for (const prod of arrayDeProductos){
         modalCarrito.innerHTML +=
         `
-        <div class="card mb-3" id = "productoCarrito${prod.id}" style="max-width: 540px;">
+        <div class="card mb-3 darkMode" id = "productoCarrito${prod.id}" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
                 <img src="assets/${prod.imagen}" class="img-fluid rounded-start" alt="...">
@@ -26,6 +26,8 @@ function mostrarCarrito(arrayDeProductos){
                 <div class="card-body">
                     <h5 class="card-title">${prod.nombre}</h5>
                     <p class="card-text">$${prod.precio}</p>
+                    <p class="card-text">Cantidad: ${prod.cantidad}</p>
+
                     <button class= "btn btn-dark" id="botonEliminar${prod.id}"><i class="fas fa-trash-alt"></i></button>
                 </div>
                 </div>
@@ -37,7 +39,6 @@ function mostrarCarrito(arrayDeProductos){
     
     for (const prod of arrayDeProductos){
         document.getElementById(`botonEliminar${prod.id}`).addEventListener("click", () => {
-            console.log(`el producto ${prod.nombre} (${prod.id}) ha sido eliminado`)
             let prodEnCarrito = document.getElementById(`productoCarrito${prod.id}`)
             prodEnCarrito.remove()
             Swal.fire({
@@ -61,21 +62,45 @@ function mostrarCarrito(arrayDeProductos){
 
 //Botón "VACIAR CARRITO" => elimina todos los productos al mismo tiempo.
 function vaciarCarrito(arrayDeProductos){
-    while (arrayDeProductos.length > 0) {
-        const confirmarBorrar = window.confirm (`Estás seguro de borrar el contenido?`)
-        if (confirmarBorrar){
-        arrayDeProductos.splice(0,arrayDeProductos.length)
-        localStorage.removeItem("carrito")
+        Swal.fire({
+            title: 'Está seguro de querer vaciar el carrito?',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, seguro',
+            cancelButtonText: 'No, no quiero',
+            confirmButtonColor: 'green',
+            cancelButtonColor: 'muted',
+        }).then((result)=>{
+            if(result.isConfirmed){
+                Swal.fire({
+                    title: 'Carrito Vaciado',
+                    icon: 'warning',
+                    confirmButtonColor: 'green',
+                    })
+                    arrayDeProductos.splice(0,arrayDeProductos.length)
+                    localStorage.removeItem("carrito")
+            }else{
+                Swal.fire({
+                    title: 'Carrito Aun LLeno',
+                    icon: 'info',
+                    text: 'Sus productos siguen en el carrito',
+                    confirmButtonColor: 'green',
+                    timer:3500
+                })
+            }
         }
+        )
     }
-}
+
+
 
 
 function agregarProducto(producto){
     const existe = carrito.find((elem) => elem.id == producto.id)
     if (existe == undefined){
 
-        carrito.push(producto)
+        carrito.push({...producto, cantidad: 1})
+
         localStorage.setItem("carrito", JSON.stringify(carrito))
         Swal.fire({
             title: 'Producto Agregado!',
@@ -85,14 +110,17 @@ function agregarProducto(producto){
             showConfirmButton: false
         })
     } else{
-        console.log("ya existe")
+        carrito = carrito.map(prod =>
+            prod.id == producto.id ? {...prod, cantidad : prod.cantidad + 1} : prod
+        )
         Swal.fire({
-            title: 'Proudcto ya agregado!',
-            text: `El producto ${producto.nombre} ya existe en el carrito`,
-            icon: 'warning',
+            title: 'Producto Agregado!',
+            text: `El producto ${producto.nombre} ha sido agregado al carrito`,
+            icon: 'success',
             timer: 2000,
             showConfirmButton: false
-        })}
+        })
+    }
 }
 
 
@@ -105,7 +133,11 @@ function carritoTotal(arrayDeProductos){
 let botonCarrito = document.getElementById("botonCarrito")
 
 botonCarrito.addEventListener("click", () =>{
-    mostrarCarrito(carrito)
+    if (carrito.length == 0){
+        Swal.fire('Su carrito esta vacio. Empiece a navegar por nuestra tienda')
+    }else{
+        mostrarCarrito(carrito)
+    }
 })
 
 

@@ -3,7 +3,8 @@
     background-color: black;
 }
 .darkMode .card{
-    color: black;
+    color: white;
+    background-color: grey;
 }
 .darkMode .modal{
     color: black;
@@ -12,3 +13,4 @@
 #productos {
     margin-bottom: 2%;
 }
+

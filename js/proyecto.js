@@ -43,8 +43,8 @@ function mostrarCatalogo(catalogoDeProductos){
                 <div class="card-body">
                     <h4 class="card-title">${producto.nombre}</h4>
                     <p>Categoria: ${producto.categoria}</p>
-                    <p class="">Precio: ${producto.precio}</p>
-                <button id="agregarBtn${producto.id}" class="btn btn-outline-success">Agregar al carrito</button>
+                    <p class="">Precio: $${producto.precio}</p>
+                <button id="agregarBtn${producto.id}" class="btn btn-outline-secondary">Agregar al carrito</button>
                 </div>
         </div>
         `
@@ -59,7 +59,7 @@ function mostrarCatalogo(catalogoDeProductos){
     }
 }
 
-mostrarCatalogo(catalogo)
+// mostrarCatalogo(catalogo)
 
 let coincidencia = document.getElementById("coincidencia")
 
@@ -110,3 +110,11 @@ botonVaciarCarrito.addEventListener("click", () =>{
     vaciarCarrito(carrito)  
 })
 
+let loaderTexto = document.getElementById("loaderTexto") //h3
+let loader = document.getElementById("loader") 
+
+setTimeout(()=>{
+    loaderTexto.innerHTML = ""
+    loader.remove()
+    mostrarCatalogo(catalogo)
+}, 3000)
