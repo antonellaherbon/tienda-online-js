@@ -14,7 +14,6 @@ else{
 darkMode.addEventListener("click", ()=>{
     document.body.classList.toggle("darkMode")
 
-    // en que modo esta?
     if (modoOscuro == false){
         darkMode.innerText = `Dark Mode`
         darkMode.className = ("btn btn-dark")

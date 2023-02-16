@@ -1,5 +1,4 @@
 const catalogo = []
-// let salirMenu = false
 
 class Producto {
     constructor(id,nombre, categoria, precio, imagen, cantidad){

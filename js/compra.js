@@ -38,6 +38,6 @@ function finalizarCompra(){
         setTimeout(() => {
             location.href = "proyecto.html"
         }, 2000)
-    }
+}
 
 

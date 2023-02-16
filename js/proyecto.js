@@ -28,7 +28,7 @@ function ordenarPorNombre(array){
 let productosDiv = document.getElementById("productos")
 function mostrarCatalogo(catalogoDeProductos){
 
-    // Mostrar productos en HTML
+// Mostrar productos en HTML
     
     productosDiv.innerHTML = "<h1>Mis Productos</h1>"
     for(let producto of catalogoDeProductos){
