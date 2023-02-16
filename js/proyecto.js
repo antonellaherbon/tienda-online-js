@@ -59,7 +59,6 @@ function mostrarCatalogo(catalogoDeProductos){
     }
 }
 
-// mostrarCatalogo(catalogo)
 
 let coincidencia = document.getElementById("coincidencia")
 
@@ -117,4 +116,4 @@ setTimeout(()=>{
     loaderTexto.innerHTML = ""
     loader.remove()
     mostrarCatalogo(catalogo)
-}, 3000)
+}, 1500)

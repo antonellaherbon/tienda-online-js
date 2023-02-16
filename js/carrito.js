@@ -17,7 +17,7 @@ function mostrarCarrito(arrayDeProductos){
     for (const prod of arrayDeProductos){
         modalCarrito.innerHTML +=
         `
-        <div class="card mb-3 darkMode" id = "productoCarrito${prod.id}" style="max-width: 540px;">
+        <div class="card mb-3" id = "productoCarrito${prod.id}" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
                 <img src="assets/${prod.imagen}" class="img-fluid rounded-start" alt="...">
@@ -113,6 +113,7 @@ function agregarProducto(producto){
         carrito = carrito.map(prod =>
             prod.id == producto.id ? {...prod, cantidad : prod.cantidad + 1} : prod
         )
+        localStorage.setItem("carrito", JSON.stringify(carrito))
         Swal.fire({
             title: 'Producto Agregado!',
             text: `El producto ${producto.nombre} ha sido agregado al carrito`,
@@ -126,22 +127,31 @@ function agregarProducto(producto){
 
 let precioTotal = document.getElementById("precioTotal")
 function carritoTotal(arrayDeProductos){
-    let total = arrayDeProductos.reduce((acc, productoCarrito)=>acc + productoCarrito.precio ,0)
-    precioTotal.innerHTML = `El total es <strong>$${total}</strong>`
+    let total = arrayDeProductos.reduce((acc, productoCarrito)=>acc + productoCarrito.cantidad * productoCarrito.precio ,0)
+    precioTotal.innerHTML = `El total es <strong>$${total}</strong>`  
 }
+
+
 //ICONO CARRITO : muestra los productos agregados al array Carrito.
 let botonCarrito = document.getElementById("botonCarrito")
 
 botonCarrito.addEventListener("click", () =>{
-    if (carrito.length == 0){
-        Swal.fire('Su carrito esta vacio. Empiece a navegar por nuestra tienda')
-    }else{
         mostrarCarrito(carrito)
-    }
 })
 
 
 let botonFinalizarCompra = document.getElementById("botonFinalizarCompra")
 botonFinalizarCompra.addEventListener("click", () => {
-    
+    if (carrito.length === 0){
+        Swal.fire({
+            title: "¡Tu carrito está vacio!",
+            text: "Agrega algo al carrito para iniciar su compra",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+          });
+    } else{
+        location.href = "compra.html";
+    }
 })
+
+

@@ -1,0 +1,49 @@
+[
+    {
+     "id": 1,
+     "nombre": "MacBook",
+     "categoria": "Electrónica",
+     "precio": 199000,
+     "imagen": "MacBook.jpg"    
+    }
+    ,
+    {
+        "id": 2,
+        "nombre": "Placa de Video",
+        "categoria": "Electrónica",
+        "precio": 100000,
+        "imagen": "PlacaDeVideo.png"    
+    }
+    ,
+    {
+        "id": 3,
+        "nombre": "Teclado Mécanico",
+        "categoria": "Electrónica",
+        "precio": 17248,
+        "imagen": "TecladoMecanico.jpg"    
+    }
+    ,
+    {
+        "id": 4,
+        "nombre": "Mouse",
+        "categoria": "Electrónica",
+        "precio":  8500,
+        "imagen": "Mouse.jpg"    
+    }
+    ,
+    {
+        "id": 5,
+        "nombre": "Auriculares",
+        "categoria": "Electrónica",
+        "precio": 10000,
+        "imagen": "Auriculares.jpg"
+    }
+    ,
+    {
+        "id": 6,
+        "nombre": "CPU",
+        "categoria": "Electrónica",
+        "precio": 70000,
+        "imagen": "CPU.jpg" 
+    }
+]
