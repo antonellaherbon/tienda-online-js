@@ -34,7 +34,6 @@ function mostrarCarrito(arrayDeProductos){
             </div>
         </div>
         `
-    
     }
     
     for (const prod of arrayDeProductos){
